@@ -1,0 +1,12 @@
+body {
+    background-color: #5c70ff;
+}
+
+#corpo {
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0.5px 0.5px 30px #505050;
+    border-radius: 20px;
+}

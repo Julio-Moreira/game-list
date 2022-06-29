@@ -1,0 +1,22 @@
+<form action="user-new.php" method="post">
+        <!-- Usuario -->
+        <label for="user"> Usuario: </label> 
+        <input type="text" name="usuario" id="user" size="10" maxlength="10"> <br>
+        <!-- Nome -->
+        <label for="nome"> Nome: </label> 
+        <input type="text" name="nome" id="nome" size="30" maxlength="30"> <br>
+        <!-- Tipo -->
+        <label for="tipo"> Tipo: </label> 
+        <select name="tipo" id="tipo">
+            <option value="admin">Administrador</option>
+            <option value="editor">Editor</option>
+        </select> <br>
+        <!-- Senhas -->
+        <label for="senha1"> Senha: </label> 
+        <input type="password" name="senha1" id="senha1" size="10" maxlength="10"> <br>
+        
+        <label for="senha2"> Confirme a senha: </label> 
+        <input type="password" name="senha2" id="senha2" size="10" maxlength="10"> <br>
+        
+        <input type="submit" id="submit" value="Adicionar">
+</form>

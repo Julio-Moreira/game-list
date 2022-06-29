@@ -1,0 +1,75 @@
+body {
+    background-color: #808080;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #ff4500;
+    text-decoration: none;
+}
+
+a:hover {
+    color: orange;
+    transition: 0.8s;
+
+}
+
+img {
+    box-shadow: 0.1px 0.1px 3px #505050;
+}
+
+img.full {
+    height: 400px;
+}
+
+table#detalhes td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+form#busca {
+    font-size: 0.5em;
+    text-align: right;
+}
+
+#corpo {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0.5px 0.5px 30px #505050;
+    border-radius: 20px;
+}
+
+.back {
+    margin: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    width: 10px;
+    height: 10px;
+    color: #000000;
+}
+
+div.suc {
+    padding: 7px 15px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: #00ff00;
+    color: #005700;
+}
+
+div.av {
+    padding: 7px 15px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 45);
+    color: rgb(138, 112, 0);
+}
+
+div.err {
+    padding: 7px 15px;
+    margin: 15px;
+    border-radius: 15px;
+    background-color: rgb(255, 93, 93);
+    color: rgb(156, 0, 0);
+}
