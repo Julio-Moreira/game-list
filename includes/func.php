@@ -13,7 +13,7 @@
 
     // volta pra uma pagina especificada 
     function voltar($path = "../index.php") {
-        echo "<a class='back' href='$path'><span class='material-icons md-light' width='100'> arrow_back_ios </span></a>
+        echo "<br> <a class='back' href='$path'><span class='material-icons md-light' width='100'> arrow_back_ios </span></a>
         ";
     }
 

@@ -42,6 +42,15 @@ a:hover {
     transition: 0.8s
 }
 
+.detalhesGP {
+    color: #1100ff;
+}
+
+.detalhesGP:hover {
+    color: #5347ff;
+    transition: 0.8s
+}
+
 .login {
     color: #008000;
 }
@@ -167,6 +176,13 @@ input:hover {
     font-size: 1em;   
 }
 
+.full {
+    width: 250px;
+    height: 250px;
+    margin-left: 255px;
+    border-radius: 50%;
+}
+
 .back {
     margin: 10px;
     margin-top: 20px;
@@ -178,14 +194,15 @@ input:hover {
 
 /* * Lupa de pesquisa */
 
-abbr {
+abbr { text-decoration: none; }
+
+abbr#lupa {
     display: inline-block;
     position: relative;
-    margin-top: 15px;
-    text-decoration: none;
+    margin-top: 15px;    
 }
 
-abbr::after {
+abbr#lupa::after {
     content: "";
     background: black; 
     width: 4px;
@@ -196,7 +213,7 @@ abbr::after {
     transform: rotate(146deg);
 }
 
-abbr > input {
+abbr#lupa > input {
     color: black;
     font-size: 16px;
     background: transparent;
@@ -209,16 +226,16 @@ abbr > input {
     transition: width 0.5s;
 }
 
-abbr > input::placeholder {
+abbr#lupa > input::placeholder {
     opacity: 0;
     transition: opacity 150ms ease-out;
     color: black;
 }
 
-abbr > input:focus::placeholder {
+abbr#lupa > input:focus::placeholder {
     opacity: 1;
 }
 
-abbr > input:focus, abbr > input :not(:placeholder-shown) {
+abbr#lupa > input:focus, abbr > input :not(:placeholder-shown) {
     width: 200px;
 }

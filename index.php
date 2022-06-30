@@ -50,7 +50,7 @@
             <br>
 
             <!-- pesquisa -->
-            <abbr title="clique aqui para pesquisar">
+            <abbr id="lupa" title="clique aqui para pesquisar">
                 <input type="text" name="chave" placeholder="pesquise...">
             </abbr>
         </form>
@@ -62,14 +62,14 @@
                 $query = "
                 select j.cod, j.nome, j.capa, g.genero, p.produtora from jogos j 
                 join generos g on j.genero = g.cod 
-                join produtora p on j.produtora = p.cod 
+                join produtoras p on j.produtora = p.cod 
                 ";
 
                 // * Busca (no input)  
                 if (!empty($chave)) {
                     $query .= " 
                     where j.nome like '%$chave%' or
-                    p.produtora like '%$chave%' or
+                    p.nome like '%$chave%' or
                     g.genero like '%$chave%' ";
                 }
 
@@ -100,8 +100,8 @@
                             $thumb = thumb($reg->capa, "fotos/indisponivel.png", "fotos/");
                             $img = "<img src='$thumb' class='mini'/>";
                             $nome = "<a class='detalhes' href='paginas/detalhes.php?cod=$reg->cod'>$reg->nome</a>";                    
-                            $genero = $reg->genero; // todo                             
-                            $produtora = $reg->produtora; // todo
+                            $genero = "<a class='detalhesGP' href='paginas/detalhes-genero.php?cod=$reg->genero'> $reg->genero </a>";                             
+                            $produtora = "<a class='detalhesGP' href='paginas/detalhes-produtora.php?cod=$reg->produtora'> $reg->produtora </a>";
                             
                             echo "<br><tr><td>". $img ."<td>". $nome ."<br>" . $genero ." ". $produtora;
 
