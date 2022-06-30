@@ -32,12 +32,27 @@
                         $path = thumb($reg->capa);
                         $img = "<img src='$path' class='full' />";
                         $nome = "<h2> $reg->nome </h2>";
-                        $nota = "Nota: $reg->nota/10"; // todo 
+                        $nota = $reg->nota;
                         $desc = "<p> $reg->descricao </p>";
 
                         echo "<tr><td rowspan='3'>". $img;
                         echo "<td>". $nome;
-                        echo "<tr><td>". $nota;
+
+                        // Classificação das notas
+                        if ($nota <= 3 ) {
+                            echo "<tr> <td> <abbr title='$nota/10'> ⭐☆☆☆☆ </abbr>";
+                        } elseif ($nota <= 6) {
+                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐☆☆☆ </abbr>";
+                        } elseif ($nota <= 8) {
+                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐☆☆ </abbr>";
+                        } elseif ($nota <= 9) {
+                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐⭐☆ </abbr>";
+                        } elseif ($nota > 9) {
+                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐⭐⭐ </abbr>";
+                        } else {
+                            echo "<tr> <td> <abbr title='$nota/10'> ☆☆☆☆☆ </abbr>";
+                        }
+
                         echo "<tr><td>". $desc;
                     else:
                         msgErro("<p>O jogo selecionado nao esta disponivel<br>volte para a pagina principal</p>");
