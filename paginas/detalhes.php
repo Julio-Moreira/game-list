@@ -37,22 +37,7 @@
 
                         echo "<tr><td rowspan='3'>". $img;
                         echo "<td>". $nome;
-
-                        // Classificação das notas
-                        if ($nota <= 3 ) {
-                            echo "<tr> <td> <abbr title='$nota/10'> ⭐☆☆☆☆ </abbr>";
-                        } elseif ($nota <= 6) {
-                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐☆☆☆ </abbr>";
-                        } elseif ($nota <= 8) {
-                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐☆☆ </abbr>";
-                        } elseif ($nota <= 9) {
-                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐⭐☆ </abbr>";
-                        } elseif ($nota > 9) {
-                            echo "<tr> <td> <abbr title='$nota/10'> ⭐⭐⭐⭐⭐ </abbr>";
-                        } else {
-                            echo "<tr> <td> <abbr title='$nota/10'> ☆☆☆☆☆ </abbr>";
-                        }
-
+                        mediaNotas("<tr> <td> ", array($nota));
                         echo "<tr><td>". $desc;
                     else:
                         msgErro("<p>O jogo selecionado nao esta disponivel<br>volte para a pagina principal</p>");

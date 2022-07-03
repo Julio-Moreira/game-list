@@ -69,7 +69,7 @@
                 if (!empty($chave)) {
                     $query .= " 
                     where j.nome like '%$chave%' or
-                    p.nome like '%$chave%' or
+                    p.produtora like '%$chave%' or
                     g.genero like '%$chave%' ";
                 }
 

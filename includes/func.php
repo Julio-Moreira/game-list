@@ -35,4 +35,24 @@
         echo $res;
     }
 
+    function mediaNotas($sep , $notas) {
+        // media
+        $media = intval(array_sum($notas) / count($notas));
+
+        // Classificação das notas
+        if ($media <= 3 ) {
+            echo $sep . "<abbr title='$media/10'> ⭐☆☆☆☆ </abbr>";
+        } elseif ($media <= 5) {
+            echo $sep . "<abbr title='$media/10'> ⭐⭐☆☆☆ </abbr>";
+        } elseif ($media <= 7) {
+            echo $sep . "<abbr title='$media/10'> ⭐⭐⭐☆☆ </abbr>";
+        } elseif ($media <= 9) {
+            echo "<tr> <td> <abbr title='$media/10'> ⭐⭐⭐⭐☆ </abbr>";
+        } elseif ($media > 9) {
+            echo $sep . "<abbr title='$media/10'> ⭐⭐⭐⭐⭐ </abbr>";
+        } else {
+            echo $sep . "<abbr title='$media/10'> ☆☆☆☆☆ </abbr>";
+        }
+    }
+
 ?>

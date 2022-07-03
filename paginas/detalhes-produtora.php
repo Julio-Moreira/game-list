@@ -15,6 +15,7 @@
     ?>
     <section id="corpo">
         <?php
+        // Query produtora
         $query = "
         select produtora, pais, criadores, dataCriacao, descr from produtoras 
         where produtora = '$cod' ";
@@ -23,6 +24,7 @@
         if (!$busca) {
             msgErro('Essa produtora não existe');
         } else {
+            // Infos principais
             $reg = $busca->fetch_object();
             $nome = $reg->produtora;
             $criadores = $reg->criadores ?? "dados não encontrados";
@@ -31,31 +33,43 @@
             $desc = $reg->descr;
             
             echo "<h1> $nome </h1>";
-            echo "criada por $criadores <br> em $data no $pais ";
-            echo "<h3> Detalhes: </h3>$desc";
-            // todo: media de notas e jogos dessa produtora 
-            $query = "select j.nome, j.capa from jogos j join produtoras p on j.produtora = p.cod
+            echo "criada por <strong>$criadores</strong> <br> em $data no $pais ";
+            echo "<h3> Detalhes: </h3> $desc";
+
+            // Query jogos
+            $query = "select j.nome, j.capa, j.cod, j.nota from jogos j 
+            join produtoras p on j.produtora = p.cod
             where p.produtora = '$nome' ";
 
             $busca = $banco->query($query);
-
             if (!$busca) {
                 msgAviso('Essa produtora não tem nenhum jogo ainda');
             } else {
-                echo "<br> <h3>Jogos: </h3> <p id='container-prod'>";
                 $count = 0;
+                $nota = array();
+
+                // Jogos
+                echo "<br> <h3>Jogos: </h3> <p id='container-prod'>";
                 while ($reg = $busca->fetch_object()) {
                     if ($count == 2) {
                         echo "<a href='det-prod-lista.php?cod=$cod' class='margin'>...</span>";
                         break;
                     }
                     
+                    // Info dos jogos
                     $path = thumb($reg->capa);
-                    echo "<span class='margin'><img class='thumb' src='$path'/>";
-                    echo "<br>$reg->nome</span>";
+                    $nome = explode(" ", $reg->nome)[0]; // pega o primeiro nome
+                    $urlDet = "detalhes.php?cod=$reg->cod";
+
+                    echo "<span class='margin'> <img class='thumb' src='$path'/>";
+                    echo "<br> <a href='$urlDet'> $nome... </a> </span>";
+                    array_push($nota, $reg->nota); // coloca todas as notas (dos jogos) em um array
                     $count++;
                 }
+
                 echo '</p>';
+                echo "<h3> Média das notas (de seus jogos): </h3>";
+                mediaNotas("", $nota);
             }
                 
         }
