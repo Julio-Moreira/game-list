@@ -11,6 +11,7 @@
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
+        $nome = $_GET['cod'];
     ?>
     <section id="corpo">
         <h1>Detalhes</h1>

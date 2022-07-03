@@ -1,41 +1,48 @@
 <?php
 
-    // coloca foto indisponivel se nao tiver foto 
-    function thumb($arq, $pathInds = "../fotos/indisponivel.png", $pathNorm = "../fotos/") {
-        $pathNorm .= "$arq";
+function thumb($arq, $pathIndisponivel = "../fotos/indisponivel.png", $pathNormal = "../fotos/") {
+        // coloca foto indisponivel se nao tiver foto
 
-        if (is_null($arq) || !file_exists($pathNorm)) {
-            return "$pathInds";
+        $pathNormal .= "$arq"; // coloca o arquivo no caminho
+
+        if (is_null($arq) || !file_exists($pathNormal)) {
+            return $pathIndisponivel;
         } else {
-            return $pathNorm;
+            return $pathNormal;
         }
     }
 
-    // volta pra uma pagina especificada 
     function voltar($path = "../index.php") {
+        // volta pra uma pagina especificada 
+
         echo "<br> <a class='back' href='$path'><span class='material-icons md-light' width='100'> arrow_back_ios </span></a>
         ";
     }
 
-    // mostra uma mensagem de sucesso
     function msgSuces($msg) {
+        // mostra uma mensagem de sucesso
+
         $res = "<div class='suc'> <span class='material-icons md-light' width='100'> done </span> $msg </div>";
         echo $res;
     }
 
-    // mostra uma mensagem de aviso
     function msgAviso($msg) {
+        // mostra uma mensagem de aviso
+
         $res = "<div class='av'> <span class='material-icons md-light' width='100'> priority_high </span> $msg </div>";
         echo $res;
     }
 
-    // mostra uma mensagem de erro
     function msgErro($msg) {
+        // mostra uma mensagem de erro
+
         $res = "<div class='err'> <span class='material-icons md-light' width='100'> close </span> $msg </div>";
         echo $res;
     }
 
     function mediaNotas($sep , $notas) {
+        // faz a média algumas notas e printa as estrelas
+
         // media
         $media = intval(array_sum($notas) / count($notas));
 

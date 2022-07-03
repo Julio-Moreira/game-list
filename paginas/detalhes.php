@@ -16,14 +16,14 @@
     ?>
 
     <section id="corpo">
-        <h1>Detalhes: </h1>
         <table id="detalhes">
             <?php
                 $cod = $_GET['cod'] ?? 0;
-                $busca = $banco -> query(" select * from jogos where cod = '$cod'; "); // query principal
+                // Puxa a capa, nome, nota e desc do jogo escolhido 
+                $busca = $banco -> query(" select capa, nome, nota, descricao from jogos where cod = '$cod'; "); 
 
                 if (!$busca) {
-                    msgErro("<p>O jogo selecionado nao esta disponivel<br>volte para a pagina principal</p>");
+                    msgErro("O jogo selecionado nao esta disponivel<br>volte para a pagina principal");
                 } else {
                     if ($busca->num_rows == 1):
                         // * print

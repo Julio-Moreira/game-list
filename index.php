@@ -58,7 +58,7 @@
         <!--Jogos-->
         <table class="listagem">
             <?php
-                // * query com os joins (sem ord)
+                //  Query que pega o nome, a capa, o genero e a produtora dos jogos (sem as ordenações)
                 $query = "
                 select j.cod, j.nome, j.capa, g.genero, p.produtora from jogos j 
                 join generos g on j.genero = g.cod 
@@ -67,8 +67,7 @@
 
                 // * Busca (no input)  
                 if (!empty($chave)) {
-                    $query .= " 
-                    where j.nome like '%$chave%' or
+                    $query .= " where j.nome like '%$chave%' or
                     p.produtora like '%$chave%' or
                     g.genero like '%$chave%' ";
                 }
@@ -115,7 +114,6 @@
                         }
                     endif;
                 endif;
-
             ?>
             </table>
     </section>
