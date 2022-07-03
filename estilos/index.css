@@ -180,7 +180,21 @@ input:hover {
     width: 250px;
     height: 250px;
     margin-left: 255px;
-    border-radius: 50%;
+}
+
+.thumb {
+    width: 130px;
+    height: 150px;
+}
+
+#container-prod {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.margin {
+    margin-right: 20px;
 }
 
 .back {
