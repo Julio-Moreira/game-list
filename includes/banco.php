@@ -1,9 +1,9 @@
 <?php
-    //       new mysqli(host, usuario, senha, banco);
+    // Conecta no banco
     $banco = new mysqli('localhost', 'root', 'jcmmln8Mysql', 'games');
     
-    if ($banco -> connect_errno):
-        msgErro("ERR0 no banco de dados");
+    if ($banco -> connect_errno): // se não tiver erro na conecção
+        msgErro("Infelismente não encontramos nenhum registro");
         die();
     endif;
 

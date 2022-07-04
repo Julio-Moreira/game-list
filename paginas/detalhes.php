@@ -13,12 +13,12 @@
         require_once "../includes/banco.php";
         require_once "../includes/login.php";
         require_once "../includes/func.php";
+        $cod = $_GET['cod'] ?? 0;
     ?>
 
     <section id="corpo">
         <table id="detalhes">
             <?php
-                $cod = $_GET['cod'] ?? 0;
                 // Puxa a capa, nome, nota e desc do jogo escolhido 
                 $busca = $banco -> query(" select capa, nome, nota, descricao from jogos where cod = '$cod'; "); 
 
@@ -29,18 +29,23 @@
                         // * print
                         $reg = $busca->fetch_object();
 
+                        // Img
                         $path = thumb($reg->capa);
                         $img = "<img src='$path' class='full' />";
-                        $nome = "<h2> $reg->nome </h2>";
-                        $nota = $reg->nota;
-                        $desc = "<p> $reg->descricao </p>";
+                        // Nome
+                        $nome = $reg->nome ?? "Desconhecido";
+                        // Nota
+                        $nota = $reg->nota ?? 0;
+                        // Descrição
+                        $desc = $reg->descricao ?? "dados não encontrados";
 
-                        echo "<tr><td rowspan='3'>". $img;
-                        echo "<td>". $nome;
-                        mediaNotas("<tr> <td> ", array($nota));
-                        echo "<tr><td>". $desc;
+                        // Printa tudo
+                        echo "<tr> <td rowspan='3'>". $img;
+                        echo "<td> <h2> $nome </h2>";
+                        mediaNotas(array($nota), "<tr> <td>");
+                        echo "<tr> <td> <p> $desc </p>";
                     else:
-                        msgErro("<p>O jogo selecionado nao esta disponivel<br>volte para a pagina principal</p>");
+                        msgErro("O jogo selecionado nao esta disponivel");
                     endif;
                 }
             ?>

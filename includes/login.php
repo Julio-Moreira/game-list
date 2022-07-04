@@ -1,26 +1,30 @@
 <?php
+// Inicia a seção
 session_start(); 
 
-if (!isset($_SESSION['user'])) { 
+if (!isset($_SESSION['user'])) {  
     $_SESSION['user'] = '';
     $_SESSION['nome'] = '';
     $_SESSION['tipo'] = '';
 }
 
-// gera uma hash da senha criptografada
-function gerarHash($senha) {
+function gerarHash(string $senha) {
+    // criptografa a senha e gera um hash
+
     $cripto = criptoSenha($senha);
     return password_hash($cripto, PASSWORD_DEFAULT);
 }
 
-// testa a senha da hash
-function testarHash($senha, $hash) {
+function testarHash(string $senha, $hash) {
+    // testa se o hash é da senha passada
+
     $ok = password_verify(criptoSenha($senha), $hash);
     return $ok;
 }
 
-// criptografa a senha
-function criptoSenha($senha) {
+function criptoSenha(string $senha) {
+    // criptografa a senha passada
+
     $crip = '';
     for ($i=0; $i < strlen($senha); $i++) { 
         $let = ord($senha[$i]) + 1;
@@ -29,22 +33,24 @@ function criptoSenha($senha) {
     return $crip;
 }
 
-// desloga
 function logout() {
+    // desloga
+
     unset($_SESSION['user']);
     unset($_SESSION['nome']);
     unset($_SESSION['tipo']);
     return true;
 }
 
-// mostra se ta logado
 function isLog() {
-    if (empty($_SESSION['user'])) { return false; }
-    else { return true; }
+    // mostra se ta logado
+
+    return ((empty($_SESSION['user'])) ? false : true);
 }
 
-// mostra se o usuario é admin
 function isAdmin() {
+    // mostra se o usuario é admin
+
     $ty = $_SESSION['tipo'] ?? null;
     if (is_null($ty)) {
         return false;
@@ -57,8 +63,9 @@ function isAdmin() {
     }
 }
 
-// mostra se o usuario é editor
 function isEditor() {
+    // mostra se o usuario é editor
+    
     $ty = $_SESSION['tipo'] ?? null;
     if (is_null($ty)) {
         return false;

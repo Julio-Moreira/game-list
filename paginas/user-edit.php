@@ -30,7 +30,7 @@
                     $senha = $_POST['senha1'] ?? null;
                     $csenha = $_POST['senha2'] ?? null;
                     
-                    $query = "update usuarios set nome='$nome'"; // query sem modificar senha
+                    $query = "update usuarios set nome='$nome'"; // query que muda o nome 
 
                     if (empty($senha) || is_null($senha)) {
                         msgAviso('senha antiga foi mantida');
@@ -38,13 +38,13 @@
                         if ($senha === $csenha) {
                             $hashSenha = gerarHash($senha);
                             
-                            $query .= ", senha='$hashSenha'";
+                            $query .= ", senha='$hashSenha'"; // inclui na query a senha modificada 
                         } else {
                             msgErro("senhas nao conferem senha anterior sera mantida");
                         }
                     }
                                         
-                    $query .= "where usuario = '". $_SESSION['user'] ."' limit 1"; // termina a query
+                    $query .= "where usuario = '". $_SESSION['user'] ."' limit 1"; // termina a query com a condição do user
 
                     if ($banco->query($query)) {
                         msgSuces('usuario alterado com sucesso');
@@ -52,6 +52,9 @@
 
                         logout();
                         voltar('user-login.php');                 
+                    } else {
+                        msgErro("Usuario não pode ser modificado");
+                        voltar();                       
                     }
 
                 }

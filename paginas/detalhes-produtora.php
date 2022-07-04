@@ -11,7 +11,7 @@
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
-        $cod = $_GET['cod'];
+        $cod = $_GET['cod'] ?? 0;
     ?>
     <section id="corpo">
         <?php
@@ -26,10 +26,10 @@
             // Infos principais
             $reg = $busca->fetch_object();
             $nome = $reg->produtora;
-            $criadores = $reg->criadores ?? "dados não encontrados";
+            $criadores = $reg->criadores ?? "Desconhecido";
             $data = $reg->dataCriacao ?? "0000"; 
             $pais = $reg->pais ?? "planeta terra";
-            $desc = $reg->descr;
+            $desc = $reg->descr ?? "dados não encontrado";
             
             echo "<h1> $nome </h1>";
             echo "criada por <strong>$criadores</strong> <br> em $data no $pais ";
@@ -69,7 +69,7 @@
 
                 echo '</p>';
                 echo "<h3> Média das notas (de seus jogos): </h3>";
-                mediaNotas("", $nota);
+                mediaNotas($nota);
             }
                 
         }

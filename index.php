@@ -49,7 +49,7 @@
             <a class="ordenar" href="index.php">mostrar todos</a>
             <br>
 
-            <!-- pesquisa -->
+            <!-- barra de pesquisa -->
             <abbr id="lupa" title="clique aqui para pesquisar">
                 <input type="text" name="chave" placeholder="pesquise...">
             </abbr>
@@ -58,9 +58,8 @@
         <!--Jogos-->
         <table class="listagem">
             <?php
-                //  Query que pega o nome, a capa, o genero e a produtora dos jogos (sem as ordenações)
-                $query = "
-                select j.cod, j.nome, j.capa, g.genero, p.produtora from jogos j 
+                // Query que pega o nome, a capa, o genero e a produtora dos jogos (sem as ordenações)
+                $query = " select j.cod, j.nome, j.capa, g.genero, p.produtora from jogos j 
                 join generos g on j.genero = g.cod 
                 join produtoras p on j.produtora = p.cod 
                 ";
@@ -96,20 +95,29 @@
                     else:
                         // * print
                         while ($reg = $busca -> fetch_object()) {
-                            $thumb = thumb($reg->capa, "fotos/indisponivel.png", "fotos/");
-                            $img = "<img src='$thumb' class='mini'/>";
-                            $nome = "<a class='detalhes' href='paginas/detalhes.php?cod=$reg->cod'>$reg->nome</a>";                    
-                            $genero = "<a class='detalhesGP' href='paginas/detalhes-genero.php?cod=$reg->genero'> $reg->genero </a>";                             
-                            $produtora = "<a class='detalhesGP' href='paginas/detalhes-produtora.php?cod=$reg->produtora'> $reg->produtora </a>";
+                            // Img
+                            $pathImg = thumb($reg->capa, "fotos/indisponivel.png", "fotos/");
+                            $img = "<img src='$pathImg' class='mini'/>";
+                            // Nome
+                            $palceholderNome = $reg->nome ?? "Desconhecido";
+                            $pathDet = "paginas/detalhes.php?cod=$reg->cod";
+                            $nome = "<a class='detalhes' href='$pathDet'> $palceholderNome </a>";                    
+                            // Genero
+                            $pathDetgen = "paginas/detalhes-genero.php?cod=$reg->genero";
+                            $genero = "<a class='detalhesGP' href='$pathDetgen'> $reg->genero </a>";                             
+                            // Produtora 
+                            $pathDetprod = "paginas/detalhes-produtora.php?cod=$reg->produtora";
+                            $produtora = "<a class='detalhesGP' href='$pathDetprod'> $reg->produtora </a>";
                             
-                            echo "<br><tr><td>". $img ."<td>". $nome ."<br>" . $genero ." ". $produtora;
+                            // Printa tudo
+                            echo "<br> <tr> <td>". $img ."<td>". $nome ."<br>" . $genero ." ". $produtora;
 
                             // * Nivel de acesso
-                            if (isAdmin()) {
-                                echo " <td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a> ";
-                                echo " <a href='@'><span class='material-symbols-outlined'> remove </span></a>";
-                            } elseif (isEditor()) {
-                                echo "<td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a>";
+                            if (isAdmin()) { // se for adm
+                                echo " <td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a> "; // todo
+                                echo " <a href='@'> <span class='material-symbols-outlined'> remove </span> </a>"; // todo
+                            } elseif (isEditor()) { // se for editor
+                                echo "<td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a>"; // todo
                             }
                         }
                     endif;

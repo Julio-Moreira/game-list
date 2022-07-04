@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../estilos/index.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>detalhes de generos</title>
+    <title>Detalhes de generos</title>
 </head>
 <body>
     <?php 
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
-        $nome = $_GET['cod'];
+        $nome = $_GET['cod'] ?? 0;
     ?>
     <section id="corpo">
         <?php
@@ -22,7 +22,8 @@
             if (!$busca) {
                 msgErro("Não temos dados desse gênero");
             } else {
-                $reg = $busca->fetch_object();
+                $reg = $busca->fetch_object(); // registra os resultados
+
                 $nome = $reg->genero ?? "desconhecido";
                 $desc = $reg->descr ?? "dados não encontrados";
                 
@@ -44,23 +45,30 @@
 
                     echo "<table class='listagem'>";
                     while ($reg = $busca->fetch_object()) {
-                        array_push($nota, $reg->nota);
-                        $path = thumb($reg->capa);
-                        $img = "<img src='$path' class='mini'/>";
-                        $nome = "<a href='detalhes.php?cod=$reg->cod' class='detalhes'> $reg->nome </a>";
-                        $produtora = "<a href='detalhes-produtora.php?cod=$reg->produtora' class='detalhesGP'> $reg->produtora </a>";
+                        array_push($nota, $reg->nota); // guarda todas as notas para fazer a media
+                        // Img
+                        $pathImg = thumb($reg->capa);
+                        $img = "<img src='$pathImg' class='mini'/>";
+                        // Nome
+                        $pathDet = "detalhes.php?cod=$reg->cod";
+                        $nome = "<a href='$pathDet' class='detalhes'> $reg->nome </a>";
+                        // Produtora
+                        $pathProd = "detalhes-produtora.php?cod=$reg->produtora";
+                        $produtora = "<a href='$pathProd' class='detalhesGP'> $reg->produtora </a>";
 
+                        // Printa tudo
                         echo "<tr> <td> $img <td> $nome <br> $produtora";
                     }
                     echo "</table>";
 
+                    // Notas
                     echo "<h2> Média de notas: </h2>";
-                    mediaNotas("", $nota);
+                    mediaNotas($nota);
                 }
                 
-            }
-            
+            }       
 
+            // Manda para o index
             voltar();
         ?>
     </section>
