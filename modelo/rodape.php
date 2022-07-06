@@ -4,8 +4,10 @@
 
     echo "<footer style='text-align: center; font-size: 0.6em;'>";
 
-    echo "<p>Acessado por ".$_SERVER['REMOTE_ADDR']." em ".date("d/m/y")."</p>";
     echo "<p>Desenvolvido por <strong>Julio</strong> &copy; ".date('Y')."</p>";
+    echo "<p>Baseado no <a href='https://www.estudonauta.com' target='_blank'>estudonauta</a></p>";
     
     echo "</footer>";
     $banco -> close();
+    
+?>

@@ -2,14 +2,14 @@
 <?php
     //* o que vai aparecer
     // deslogado
-    $entrar = "<a class='login' href='paginas/user-login.php'> entrar </a>";
-    $sair = "<a class='login' href='paginas/user-logout.php'>sair</a>";
+    $entrar = "<a class='login' href='paginas/user/login.php'> <span class='material-symbols-outlined'> login </span> </a>";
+    $sair = "<a class='login' href='paginas/user/logout.php'>sair</a>";
     // logado
-    $alterarDados = "<a class='login' href='paginas/user-edit.php'>Alterar dados</a> ";
+    $alterarDados = "<a class='login' href='paginas/user/edit.php'>Alterar dados</a> ";
     // admin
-    $novoUsuario = "<a class='login' href='paginas/user-new.php'>Novo usuario</a> ";
+    $novoUsuario = "<a class='login' href='paginas/user/new.php'>Novo usuario</a> ";
     // editor
-    $novoJogo = "<a class='login' href='@'>Novo jogo</a> "; // todo
+    $novoJogo = "<a class='login' href='paginas/user/newGame.php'>Novo jogo</a> "; // todo
 
     echo "<header style='font-size: 0.6em; text-align: right;'>";
     

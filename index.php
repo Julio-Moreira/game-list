@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="fotos/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="fotos/favicon/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="estilos/index.css">
     <!-- google icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,14 +31,12 @@
         <form action="index.php" method="get" id="busca">
             <?php
             // * Urls
-            $nomeUrl = "index.php?ord=nome&chave=$chave";
             $produtoraUrl = "index.php?ord=produtora&chave=$chave";
             $nota_altaUrl = "index.php?ord=nota_alta&chave=$chave";
             $nota_baixaUrl = "index.php?ord=nota_baixa&chave=$chave";
             ?>
 
-            <!-- nome --> 
-            <a class="ordenar" href="<?php echo $nomeUrl ?>"> nome</a> |
+            <span class="material-symbols-outlined"> filter_alt </span>: <!-- icone de filtro -->
             <!-- produtora --> 
             <a class="ordenar" href="<?php echo $produtoraUrl ?>"> produtora </a> |
             <!-- nota (alta) --> 
@@ -46,7 +44,7 @@
             <!-- nota (baixa) --> 
             <a class="ordenar" href="<?php echo $nota_baixaUrl ?>"> nota (baixa)</a> |
             <!-- no filter --> 
-            <a class="ordenar" href="index.php">mostrar todos</a>
+            <a class="ordenar" href="index.php"> <span class="material-symbols-outlined"> filter_alt_off </span> </a>
             <br>
 
             <!-- barra de pesquisa -->

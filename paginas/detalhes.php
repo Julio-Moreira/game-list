@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../estilos/detalhes.css">
-    <link rel="shortcut icon" href="../fotos/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../fotos/favicon/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Detalhes do jogo</title>
 </head>

@@ -2,29 +2,29 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../estilos/index.css">
-    <link rel="shortcut icon" href="../fotos/favicon-new.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../estilos/index.css">
+    <link rel="shortcut icon" href="../../fotos/favicon-new.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Novo usuario</title>
 </head>
 <body>
     <?php 
         // * includes
-        require_once "../includes/banco.php";
-        require_once "../includes/login.php";
-        require_once "../includes/func.php";
+        require_once "../../includes/banco.php";
+        require_once "../../includes/login.php";
+        require_once "../../includes/func.php";
     ?>
     <section id="corpo">
         <?php
             if (!isAdmin()) { // se o user não for admin não deixa entrar
                 msgErro('Voce precisa ser adiministrador para criar um novo usuario');
-                voltar("user-login.php");
+                voltar("login.php");
             } else {
                 echo "<h1> Novo usuario </h1>";
 
                 if (!isset($_POST['usuario'])) {
-                    require_once "user-new-form.html";
-                    voltar();
+                    require_once "new-form.html";
+                    voltar("../../index.php");
                 } else {
                     $usuario = $_POST['usuario'] ?? null;
                     $nome = $_POST['nome'] ?? null;
@@ -37,7 +37,7 @@
 
                         if ($dataEmpty) {
                             msgErro('Preencha todos os dados');
-                            voltar('user-new.php');
+                            voltar('new.php');
                         } else {
                             $senha = gerarHash($senha_1);
                             
@@ -49,21 +49,21 @@
                             
                             if ($banco->query($query)) {
                                 msgSuces("Usuario $nome cadastrado com suceso!");
-                                voltar();
+                                voltar("../../index.php");
                             } else {
                                 msgErro("O usuario $nome nao pode ser cadastrado");
-                                voltar('user-new.php');
+                                voltar('new.php');
                             }
                         }
                     } else {
                         msgErro('Senhas nao conferem');
-                        voltar('user-new.php');
+                        voltar('new.php');
                     }
                 }
             }
 
         ?>
     </section>
-    <?php include_once "../modelo/rodape.php" // rodape ?>
+    <?php include_once "../../modelo/rodape.php" // rodape ?>
 </body>
 </html>

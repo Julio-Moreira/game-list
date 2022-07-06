@@ -1,5 +1,5 @@
 <?php
-    // querys
+    // query que pega o usuario nome e o tipo dos usuarios 
     $query = "
     select usuario, nome, tipo from usuarios
     where usuario='". $_SESSION['user'] ."'";
@@ -11,7 +11,7 @@
 <h1>Alteracao de dados</h1>
 
 <!-- form --> 
-<form action="user-edit.php" method="post">   
+<form action="edit.php" method="post">   
     <!-- usuario -->
     <abbr title="você não pode modificar seu nome de usuario"> Usuario: <?php echo $reg->usuario ?> </abbr> <br>
     <!-- tipo -->
