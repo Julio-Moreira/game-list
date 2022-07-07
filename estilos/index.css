@@ -127,6 +127,11 @@ input:hover {
     transition: 0.5s;
 }
 
+#capa {
+    width: auto;
+    height: auto;
+    border-style: none;
+}
 #submit {
     background-color: #00009e;
     color: #ffffff;

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../../estilos/index.css">
     <link rel="shortcut icon" href="../../fotos/favicon/new-game.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>novo jogo</title>
 </head>
 <body>
@@ -17,7 +18,19 @@
     <section id="corpo">
         <?php
 
-        voltar("../../index.php");
+            if (!isset($_POST['nome'])) {
+                require_once "newGame-form.php";
+            } else {
+                $capa = $_POST['capa'] ?? null;
+                $nome = $_POST['nome'] ?? null;
+                $desc = $_POST['descricao'] ?? null;
+                $nota = $_POST['nota'] ?? null;
+                $genero = $_POST['genero'] ?? null;
+                $prod = $_POST['produtora'] ?? null;       
+            }
+
+
+            voltar("../../index.php");
         ?>
     </section>
     <!-- Credits icon -->
