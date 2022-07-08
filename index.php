@@ -30,7 +30,7 @@
         <!-- Ordenacao -->
         <?php require_once "index-form.php" ?>
 
-        <!--Jogos-->
+        <!-- Listagem de jogos -->
         <table class="listagem">
             <?php
                 // Query que pega o nome, a capa, o genero e a produtora dos jogos (sem as ordenações)
@@ -38,16 +38,17 @@
                 join generos g on j.genero = g.cod 
                 join produtoras p on j.produtora = p.cod 
                 ";
-
+                
+                // Parte da organização
                 // * Busca (no input)  
                 if (!empty($chave)) {
                     $query .= " where j.nome like '%$chave%' or
                     p.produtora like '%$chave%' or
-                    g.genero like '%$chave%' ";
+                    g.genero like '%$chave%' "; // coloca a busca na query 
                 }
 
                 // * ordenacao 
-                switch ($ordem) {
+                switch ($ordem) { // coloca a ordenação na quary
                     case 'produtora':
                         $query .= " order by p.produtora";
                         break;
@@ -61,6 +62,7 @@
                         $query .= " order by j.nome";
                 }
 
+                // Parte da listagem 
                 $busca = $banco->query($query);         
                 if (!$busca): // se a busca nao der certo
                     msgErro('Nenhum jogo disponivel no momento <br> =(');
@@ -68,7 +70,7 @@
                     if ($busca->num_rows == 0): 
                         msgErro('Nenhum jogo encontrado =(');
                     else:
-                        // * print
+                        // * Printa tudo 
                         while ($reg = $busca -> fetch_object()) {
                             // Img
                             $pathImg = thumb($reg->capa, "fotos/indisponivel.png", "fotos/");
@@ -84,7 +86,6 @@
                             $pathDetprod = "paginas/detalhes-produtora.php?cod=$reg->produtora";
                             $produtora = "<a class='detalhesGP' href='$pathDetprod'> $reg->produtora </a>";
                             
-                            // Printa tudo
                             echo "<br> <tr> <td>". $img ."<td>". $nome ."<br>" . $genero ." ". $produtora;
 
                             // * Nivel de acesso
