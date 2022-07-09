@@ -12,7 +12,7 @@ function thumb(string $arq, $pathIndisponivel = "../fotos/indisponivel.png", $pa
         }
     }
 
-    function voltar(string $path = "../index.php") {
+    function voltar(string $path = "javascript: history.go(-1)") {
         // cria um icone que volta pra uma pagina especificada 
 
         echo "<br> <a class='back' href='$path'><span class='material-icons md-light' width='100'> arrow_back_ios </span></a>
