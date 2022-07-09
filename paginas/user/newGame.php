@@ -21,15 +21,51 @@
             if (!isset($_POST['nome'])) {
                 require_once "newGame-form.php";
             } else {
-                $capa = $_POST['capa'] ?? null;
-                $nome = $_POST['nome'] ?? null;
-                $desc = $_POST['descricao'] ?? null;
-                $nota = $_POST['nota'] ?? null;
-                $genero = $_POST['genero'] ?? null;
-                $prod = $_POST['produtora'] ?? null;       
+                // Dados
+                // capa
+                $capa = $_FILES['capa']; 
+                $capaNome = $capa['name'];
+                $capaTipo = pathinfo($capaNome, PATHINFO_EXTENSION); 
+                $capaArq = $capa['tmp_name'];
+                $novoNome = uniqid(). '.'. $capaTipo;
+                // nome 
+                $nome = $_POST['nome'] ?? 'desconhecido';
+                // descrição
+                $desc = $_POST['descricao'] ?? 'sem dados';
+                // nota
+                $nota = $_POST['nota'] ?? '0';
+                // genero 
+                $gen = $_POST['genero'] ?? '0';
+                // produtora
+                $prod = $_POST['produtora'] ?? '0';     
+                
+                if ($capaTipo != 'png') {
+                    msgErro('Você só pode carregar arquivos do tipo png e não '. $capaTipo);
+                    sleep(0.5); // espera 0.5 segundos
+                    voltar('../../index.php'); // redireciona o usu para o index
+                    die();
+                } else {
+                    $img = move_uploaded_file($capaArq, "../../fotos/".$novoNome); // Coloca o arquivo na pasta fotos
+                    if (!$img) {
+                        msgErro('infelismente não pudemos carregar sua imagem');
+                        voltar('../../index.php'); // redireciona o usu para o index
+                        die();
+                    }
+                }
+
+                // Query que insere os dados no db
+                $query = "insert into jogos values
+                (default, '$nome', '$gen', '$prod', '$desc', '$nota', '$novoNome')";
+
+                $busca = $banco->query($query);
+                if (!$busca) {
+                    msgErro(' infelismente não conseguimos cadastrar esses dados');
+                } else {
+                    msgSuces('Os dados foram cadastrados com sucesso');
+                    sleep(0.5);
+                    header('Location: ../../index.php');
+                }            
             }
-
-
             voltar("../../index.php");
         ?>
     </section>
