@@ -19,7 +19,7 @@
         <?php
 
             if (!isset($_POST['nome'])) {
-                require_once "newGame-form.php";
+                require_once "game-form.php";
             } else {
                 // Dados
                 // capa

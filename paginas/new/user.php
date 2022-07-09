@@ -25,7 +25,7 @@
                 echo "<h1> Novo usuario </h1>";
 
                 if (!isset($_POST['usuario'])) {
-                    require_once "new-form.html";
+                    require_once "user-form.html";
                     voltar("../../index.php");
                 } else {
                     $usuario = $_POST['usuario'] ?? null;
@@ -39,9 +39,9 @@
 
                         if ($dataEmpty) {
                             msgErro('Preencha todos os dados');
-                            voltar('new.php');
+                            voltar('user.php');
                             sleep(1);
-                            header('Location: new.php'); 
+                            header('Location: user.php'); 
                         } else {
                             $senha = gerarHash($senha_1);
                             
@@ -58,16 +58,16 @@
                                 header('Location: ../../index.php'); 
                             } else {
                                 msgErro("O usuario $nome nao pode ser cadastrado");
-                                voltar('new.php');
+                                voltar('user.php');
                                 sleep(1);
                                 header('Location: ../../index.php'); 
                             }
                         }
                     } else {
                         msgErro('Senhas nao conferem');
-                        voltar('new.php');
+                        voltar('user.php');
                         sleep(1);
-                        header('Location: new.php'); 
+                        header('Location: user.php'); 
                     }
                 }
             }

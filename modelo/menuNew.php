@@ -17,24 +17,24 @@
             if (isEditor() || isAdmin()) {
                 echo '<section class="cartao">';
                 echo '<img src="../fotos/favicon/favicon.png" alt="controle" class="cart"> <br>';
-                echo '<a href="../paginas/user/newGame.php"> novo jogo </a>';
+                echo '<a href="../paginas/new/game.php"> novo jogo </a>';
                 echo '</section>';
 
                 echo '<section class="cartao">';
                 echo '<img src="#" alt="produtora" class="cart"> <br>';
-                echo '<a href="#"> nova produtora </a>  <!-- todo -->';
+                echo '<a href="../paginas/new/prod.php"> nova produtora </a>  <!-- todo -->';
                 echo '</section>';
 
                 echo '<section class="cartao">';
                 echo '<img src="#" alt="genero" class="cart"> <br>';
-                echo '<a href="#"> novo genero </a> <!-- todo -->';
+                echo '<a href="../paginas/new/gen.php"> novo genero </a> <!-- todo -->';
                 echo '</section>';
             }           
             
             if (isAdmin()) {
                 echo '<section class="cartao">';
                 echo '<img src="../fotos/favicon/new.png" class="cart" alt="new"> <br>';
-                echo '<a href="../paginas/user/new.php"> novo usuario </a>';
+                echo '<a href="../paginas/new/user.php"> novo usuario </a>';
                 echo '</section>';
             }
         } else {
