@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php 
-    // * includes
+        // * includes
         require_once "../../includes/banco.php";
         require_once "../../includes/login.php";
         require_once "../../includes/func.php";
@@ -20,6 +20,8 @@
             if (!isLog()) { // se nao estiver logado
                 msgErro('Efetue o login antes de editar seus dados');
                 voltar('login.php');
+                sleep(1);
+                header('Location: login.php');  
             } else {
 
                 if (!isset($_POST['nome'])) { // se os dados nao forem passados execute o formulario 
@@ -51,10 +53,14 @@
                         msgAviso("por segurança faça o login novamente");
 
                         logout();
-                        voltar('login.php');                 
+                        voltar('login.php');
+                        sleep(1);
+                        header('Location: login.php');                 
                     } else {
                         msgErro("Usuario não pode ser modificado");
-                        voltar("../../index.php");                       
+                        voltar();          
+                        sleep(1);
+                        header('Location: ../../index.php');             
                     }
 
                 }

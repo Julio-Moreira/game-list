@@ -21,8 +21,11 @@
                 msgSuces('Usuario desconectado com sucesso');
             } else {
                 msgErro("Infelizmente o logout não pode ser executado");
+                 
             }
             voltar("../../index.php");
+            sleep(1);
+            header('Location: ../../index.php'); 
         ?>
     </section>
     <?php include_once "../../modelo/rodape.php" // rodape ?>

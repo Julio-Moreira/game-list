@@ -19,6 +19,8 @@
             if (!isAdmin()) { // se o user não for admin não deixa entrar
                 msgErro('Voce precisa ser adiministrador para criar um novo usuario');
                 voltar("login.php");
+                sleep(1);
+                header('Location: login.php'); 
             } else {
                 echo "<h1> Novo usuario </h1>";
 
@@ -38,10 +40,12 @@
                         if ($dataEmpty) {
                             msgErro('Preencha todos os dados');
                             voltar('new.php');
+                            sleep(1);
+                            header('Location: new.php'); 
                         } else {
                             $senha = gerarHash($senha_1);
                             
-                            // query princial
+                            // query insere os dados no db
                             $query = "
                             INSERT INTO usuarios (usuario, nome, senha, tipo) VALUES
                             ('$usuario', '$nome', '$senha', '$tipo')
@@ -50,14 +54,20 @@
                             if ($banco->query($query)) {
                                 msgSuces("Usuario $nome cadastrado com suceso!");
                                 voltar("../../index.php");
+                                sleep(1);
+                                header('Location: ../../index.php'); 
                             } else {
                                 msgErro("O usuario $nome nao pode ser cadastrado");
                                 voltar('new.php');
+                                sleep(1);
+                                header('Location: ../../index.php'); 
                             }
                         }
                     } else {
                         msgErro('Senhas nao conferem');
                         voltar('new.php');
+                        sleep(1);
+                        header('Location: new.php'); 
                     }
                 }
             }
