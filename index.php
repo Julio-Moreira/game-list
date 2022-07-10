@@ -90,10 +90,10 @@
 
                             // * Nivel de acesso
                             if (isAdmin()) { // se for adm
-                                echo " <td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a> "; // todo
-                                echo " <a href='@'> <span class='material-symbols-outlined'> remove </span> </a>"; // todo
+                                echo " <td> <a href='paginas/edit/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined' id='ico'> edit </span> </a> "; 
+                                echo " <a href='paginas/delete/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined'> remove </span> </a>";
                             } elseif (isEditor()) { // se for editor
-                                echo "<td> <a href='@'><span class='material-symbols-outlined' id='ico'> edit </span></a>"; // todo
+                                echo "<td> <a href='paginas/edit/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined' id='ico'> edit </span></a>"; 
                             }
                         }
                     endif;

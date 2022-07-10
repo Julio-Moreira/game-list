@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../estilos/index.css">
     <link rel="shortcut icon" href="../fotos/favicon/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Detalhes de generos</title>
 </head>
 <body>
@@ -12,22 +13,31 @@
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
+        require_once "../includes/login.php";
         $nome = $_GET['cod'] ?? 0;
     ?>
     <section id="corpo">
         <?php
             // Query que puxa a descrição e o nome do genero escolhido
             $query = "select descr, genero from generos where genero = '$nome'";
-            
+
             $busca = $banco->query($query);
             if (!$busca) {
                 msgErro("Não temos dados desse gênero");
             } else {
                 $reg = $busca->fetch_object(); // registra os resultados
-
+                // Dados principais
                 $nome = $reg->genero ?? "desconhecido";
                 $desc = $reg->descr ?? "dados não encontrados";
+                // * Nivel de acesso
+                if (isAdmin()) { // se for adm
+                    echo "<a href='edit/gen.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span></a> "; 
+                    echo " <a href='delete/gen.php?nome=$nome'> <span class='material-symbols-outlined'> remove </span> </a> <br>"; 
+                } elseif (isEditor()) { // se for editor
+                    echo "<a href='edit/gen.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span> </a> <br>"; 
+                }
                 
+                // Pagina principal
                 echo "<h1>$nome</h1>";
                 echo "<p>$desc</p>";
 

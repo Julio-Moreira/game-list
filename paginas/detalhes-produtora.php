@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../estilos/index.css">
     <link rel="shortcut icon" href="../fotos/favicon/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>detalhes de produtoras</title>
 </head>
 <body>
@@ -12,6 +13,7 @@
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
+        require_once "../includes/login.php";
         $cod = $_GET['cod'] ?? 0;
     ?>
     <section id="corpo">
@@ -19,19 +21,28 @@
         // Query que puxa as infos das produtoras
         $query = " select produtora, pais, criadores, dataCriacao, descr from produtoras 
         where produtora = '$cod' ";
-        
+
         $busca = $banco->query($query);
         if (!$busca) {
             msgErro('Essa produtora não existe');
         } else {
-            // Infos principais
             $reg = $busca->fetch_object();
-            $nome = $reg->produtora;
-            $criadores = $reg->criadores ?? "Desconhecido";
+            // Infos principais
+            $nome = $reg->produtora ?? "Desconhecido";
+            $criadores = $reg->criadores ?? "sem dados";
             $data = $reg->dataCriacao ?? "0000"; 
             $pais = $reg->pais ?? "planeta terra";
             $desc = $reg->descr ?? "dados não encontrado";
+
+            // * Nivel de acesso
+            if (isAdmin()) { // se for adm
+                echo "<a href='edit/prod.php?nome=$nome'> <span class='material-symbols-outlined' id='ico'> edit </span></a> "; 
+                echo " <a href='delete/prod.php?nome=$nome'> <span class='material-symbols-outlined'> remove </span> </a> <br>"; 
+            } elseif (isEditor()) { // se for editor
+                echo "<a href='edit/prod.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span> </a> <br>"; 
+            }
             
+            // Pagina principal
             echo "<h1> $nome </h1>";
             echo "criada por <strong>$criadores</strong> <br> em $data no $pais ";
             echo "<h3> Detalhes: </h3> $desc";
