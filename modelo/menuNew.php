@@ -21,13 +21,13 @@
                 echo '</section>';
 
                 echo '<section class="cartao">';
-                echo '<img src="#" alt="produtora" class="cart"> <br>';
-                echo '<a href="../paginas/new/prod.php"> nova produtora </a>  <!-- todo -->';
+                echo '<img src="../fotos/favicon/add.png" alt="produtora" class="cart"> <br>';
+                echo '<a href="../paginas/new/prod.php"> nova produtora </a>';
                 echo '</section>';
 
                 echo '<section class="cartao">';
-                echo '<img src="#" alt="genero" class="cart"> <br>';
-                echo '<a href="../paginas/new/gen.php"> novo genero </a> <!-- todo -->';
+                echo '<img src="../fotos/favicon/add.png" alt="genero" class="cart"> <br>';
+                echo '<a href="../paginas/new/gen.php"> novo genero </a>';
                 echo '</section>';
             }           
             
@@ -38,7 +38,10 @@
                 echo '</section>';
             }
         } else {
-            msgErro('você precisa estar logado para criar coisas');
+            msgErro('você precisa estar logado para criar coisas <br> você sera redirecionado');
+            voltar('../index.php');
+            sleep(5);
+            header('Location: ../paginas/user/login.php');
         }
         ?>
     </div>

@@ -1,1 +1,23 @@
-todo
+<form action="prod.php" method="get">
+    <!-- nome -->
+    <label for="nome">Nome: </label>
+    <input type="text" required name="nome" id="nome" size="20" maxlength="20"> <br>
+
+    <!-- pais -->
+    <label for="pais">País: </label>
+    <input type="text" name="pais" id="pais" size="15" maxlength="15"> <br>
+
+    <!-- data da criação -->
+    <label for="dataCriacao">Ano da criação: </label>
+    <input type="text" name="data" id="dataCriacao" size="4" maxlength="4"> <br>
+
+    <!-- criadores -->
+    <label for="criadores">Criadores: </label>
+    <input type="text" name="criadores" id="criadores" size="40" maxlength="40"> <br>
+
+    <!-- descrição -->
+    <label for="desc">Descrição: </label> <br>
+    <textarea name="desc" id="desc" cols="30" rows="5" style='resize: none; font-size: 0.8em;'></textarea> <br>
+
+    <input type="submit" id="submit" value="Salvar">
+</form>
