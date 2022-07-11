@@ -29,14 +29,7 @@
                 // Dados principais
                 $nome = $reg->genero ?? "desconhecido";
                 $desc = $reg->descr ?? "dados não encontrados";
-                // * Nivel de acesso
-                if (isAdmin()) { // se for adm
-                    echo "<a href='edit/gen.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span></a> "; 
-                    echo " <a href='delete/gen.php?nome=$nome'> <span class='material-symbols-outlined'> remove </span> </a> <br>"; 
-                } elseif (isEditor()) { // se for editor
-                    echo "<a href='edit/gen.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span> </a> <br>"; 
-                }
-                
+
                 // Pagina principal
                 echo "<h1>$nome</h1>";
                 echo "<p>$desc</p>";

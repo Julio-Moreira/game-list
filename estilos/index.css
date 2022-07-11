@@ -118,7 +118,10 @@ img.mini {
 .cart {
     box-shadow: none;
     width: 80px;
-    margin-left: 35px;
+    text-align: center;
+}
+
+.cart > img {
     text-align: center;
 }
 

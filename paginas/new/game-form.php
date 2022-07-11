@@ -1,8 +1,8 @@
-<form action="newGame.php" method="post" enctype="multipart/form-data">
+<form action="game.php" method="post" enctype="multipart/form-data">
 
     <!-- Capa -->
     <label for="capa">Capa: </label> 
-    <input type="file" name="capa" id="capa"> <br>
+    <input required type="file" name="capa" id="capa"> <br>
     <em style="font-size: 0.5em;">*por segurança só aceitamos arquivos do tipo png</em> <br>
 
     <!-- Nome -->
@@ -24,7 +24,7 @@
             echo "<option value='$reg->cod'> $reg->genero </option>";
         }
     ?>
-    </select> ou <a href="newGen.php"> <span class="material-symbols-outlined"> add </span> </a> <br>
+    </select> ou <a href="gen.php"> <span class="material-symbols-outlined"> add </span> </a> <br>
 
     <!-- Produtoras -->
     <label for="prod">Produtora: </label>
@@ -37,7 +37,7 @@
             echo "<option value='$reg->cod'> $reg->produtora </option>";
         }
     ?>
-    </select> ou <a href="newProd.php"> <span class="material-symbols-outlined"> add </span> </a> <br>
+    </select> ou <a href="prod.php"> <span class="material-symbols-outlined"> add </span> </a> <br>
 
     <!-- Descrição -->
     <label for="desc">Descrição: </label> <br>

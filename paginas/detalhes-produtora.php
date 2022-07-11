@@ -34,14 +34,6 @@
             $pais = $reg->pais ?? "planeta terra";
             $desc = $reg->descr ?? "dados não encontrado";
 
-            // * Nivel de acesso
-            if (isAdmin()) { // se for adm
-                echo "<a href='edit/prod.php?nome=$nome'> <span class='material-symbols-outlined' id='ico'> edit </span></a> "; 
-                echo " <a href='delete/prod.php?nome=$nome'> <span class='material-symbols-outlined'> remove </span> </a> <br>"; 
-            } elseif (isEditor()) { // se for editor
-                echo "<a href='edit/prod.php?nome=$nome'><span class='material-symbols-outlined' id='ico'> edit </span> </a> <br>"; 
-            }
-            
             // Pagina principal
             echo "<h1> $nome </h1>";
             echo "criada por <strong>$criadores</strong> <br> em $data no $pais ";
