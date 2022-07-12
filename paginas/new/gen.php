@@ -30,22 +30,12 @@
                     $reg = $busca->fetch_object();
                     $cod = $reg->cod + 1;
 
-                    // query que insere os dados no db 
+                    // query que insere o codigo a descrição e nome nos generos 
                     $query = "insert into generos (cod, descr, genero) values
                     ($cod, '$desc', '$nome')";
-
-                    $busca = $banco->query($query);
-                    if (!$busca) {
-                        msgErro('Não conseguimos inserir os dados');
-                        sleep(10);
-                        header('Location: ../../index.php');
-                    } else {
-                        msgSuces('Os dados foram inseridos com sucesso');
-                        sleep(10);
-                        header('Location: ../../index.php');
-                    }
+                    query($query, 'Os dados foram inseridos com sucesso', 'Não conseguimos inserir os dados', $banco);
+                    header('Location: ../../index.php');
                 }
-                
             } else {
                 msgErro('vocễ precisa ser adiministrador para criar um novo genero');
                 sleep(5);

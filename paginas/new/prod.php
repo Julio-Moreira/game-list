@@ -36,15 +36,8 @@
                 // Query que insere o nome, pais, descrição e os criadores no db
                 $query = "insert into produtoras (cod, criadores, dataCriacao, descr, pais, produtora) values
                 ($cod, '$criadores', '$dataCriacao', '$desc', '$pais', '$nome') ";
-                $busca = $banco->query($query);
-                if (!$busca) {
-                    msgErro('Infelismente não os dados não foram inseridos');
-                    header('Location: prod.php');
-                } else {
-                    msgSuces('Os dados foram inseridos com sucesso');
-                    header('Location: ../../index.php');
-                }
-                
+                query($query, 'Os dados foram inseridos com sucesso', 'Infelismente não os dados não foram inseridos', $banco);
+                header('Location: ../../index.php');
             }
         } else {
             msgErro('Vocẽ precisa ser administrador para criar uma produtora');

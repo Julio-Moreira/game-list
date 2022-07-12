@@ -26,5 +26,5 @@
     <label for="confirmSenha">Confirme a senha: </label>  
     <input type="password" id="confirmSenha" name="senha2" size="10" maxlength="10"> <br>
     
-    <input type="submit" id="submit" value="Salvar">
+    <input type="submit"    value="Salvar">
 </form>

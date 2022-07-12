@@ -13,29 +13,30 @@
     <?php require_once "../includes/login.php"; require_once "../includes/func.php"; ?>
     <div id="container-new">
         <?php
-        if (isLog()) {       
+        function cartao($nome, $pathImg, $alt, $pathLink) {
+            // Cria um cartão que tem uma img e nome de qualquer coisa
+
+            echo '<section class="cartao">';
+                echo "<img src='$pathImg' alt='$alt' class='cart'> <br>";
+                echo "<a href='$pathLink'> $nome </a>";
+            echo '</section>';
+        }
+
+        if (isLog()) { // se o usuario ta logado    
             if (isEditor() || isAdmin()) {
-                echo '<section class="cartao">';
-                echo '<img src="../fotos/favicon/favicon.png" alt="controle" class="cart"> <br>';
-                echo '<a href="../paginas/new/game.php"> novo jogo </a>';
-                echo '</section>';
+                // cartão para o novo jogo
+                cartao('novo jogo', '../fotos/favicon/favicon.png', 'controle', '../paginas/new/game.php');
 
-                echo '<section class="cartao">';
-                echo '<img src="../fotos/favicon/add.png" alt="produtora" class="cart"> <br>';
-                echo '<a href="../paginas/new/prod.php"> nova produtora </a>';
-                echo '</section>';
+                // cartão para nova produtora
+                cartao('nova produtora', '../fotos/favicon/add.png', 'mais', '../paginas/new/prod.php');
 
-                echo '<section class="cartao">';
-                echo '<img src="../fotos/favicon/add.png" alt="genero" class="cart"> <br>';
-                echo '<a href="../paginas/new/gen.php"> novo genero </a>';
-                echo '</section>';
+                // cartão para novo genero 
+                cartao('novo genero', '../fotos/favicon/add.png', 'mais', '../paginas/new/gen.php');
             }           
             
             if (isAdmin()) {
-                echo '<section class="cartao">';
-                echo '<img src="../fotos/favicon/new.png" class="cart" alt="new"> <br>';
-                echo '<a href="../paginas/new/user.php"> novo usuario </a>';
-                echo '</section>';
+                // cartão para novo usuario
+                cartao('novo usuario', '../fotos/favicon/new.png', 'novo', '../paginas/new/user.php');
             }
         } else {
             msgErro('você precisa estar logado para criar coisas <br> você sera redirecionado');

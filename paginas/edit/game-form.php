@@ -1,11 +1,13 @@
 <?php 
+    // Pega o nome, capa, nota, codigo de generos e produtoras, generos, produtoras e a descrição dos jogos
     $query = "select j.nome, j.capa, j.nota, g.cod as cod_gen, g.genero, p.cod as cod_prod, p.produtora, j.descricao from jogos j
     join produtoras p on j.produtora = p.cod 
     join generos g on j.genero = g.cod 
     where j.nome = '$antNome'";
     $busca = $banco->query($query);
     $reg = $busca->fetch_object();
-    `rm ../../fotos/$reg->capa`;
+    // deleta a img antiga
+    `rm ../../fotos/$reg->capa` ? msgSuces('A imagem antiga foi deletada com sucesso') : msgErro('A imagem antiga não pode ser deletada');
 ?>
 
 <form action="game.php" method="post" enctype="multipart/form-data">
@@ -60,8 +62,8 @@
     <label for="desc">Descrição: </label> <br>
     <textarea required style='resize: none; font-size: 0.8em;' name="descricao" id="desc" cols="30" rows="5"><?php echo $reg->descricao ?></textarea> 
     
-    <!-- maanda o nome principal para o programa principal -->
+    <!-- manda o nome principal para o programa principal -->
     <input type="hidden" name="nomePrinc" value="<?php echo $reg->nome ?>"><br>
 
-    <input type="submit" value="Salvar" id='submit'>
+    <input type="submit" value="Salvar">
 </form>

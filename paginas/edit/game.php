@@ -21,7 +21,7 @@
 
         if (isAdmin()) {
             if (!isset($_POST['nome'])) {
-                require_once "game-form.php";
+                require_once "game-form.php"; // carrega o formulario da pagina
             } else {
                 // Dados
                 // capa
@@ -52,15 +52,10 @@
                 capa = '$novoNome'
                 where nome = '$nome_princ'";
 
-                $busca = $banco->query($query);
-                if (!$busca) {
-                    msgErro(' infelismente não conseguimos cadastrar esses dados');
-                    header('Location: ../../index.php');
-                } else {
-                    msgSuces('Os dados foram cadastrados com sucesso');
-                    header('Location: ../../index.php');
-                }            
-                
+                // Concretiza a query
+                query($query, 'Os dados foram cadastrados com sucesso', 'infelismente não conseguimos cadastrar esses dados', $banco);
+
+                // Instala a img no local 
                 if ($capaTipo != 'png') { 
                     msgErro('Você só pode carregar arquivos do tipo png e não '. $capaTipo);
                     sleep(0.5); // espera 0.5 segundos

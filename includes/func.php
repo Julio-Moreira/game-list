@@ -1,6 +1,5 @@
 <?php
-
-function thumb(string $arq, $pathIndisponivel = "../fotos/indisponivel.png", $pathNormal = "../fotos/") {
+    function thumb(string $arq, $pathIndisponivel = "../fotos/indisponivel.png", $pathNormal = "../fotos/") {
         // Cria o caminho para a foto mas se não tiver foto ele coloca indisponivel
 
         $pathNormal .= "$arq"; // coloca o arquivo no caminho
@@ -13,7 +12,7 @@ function thumb(string $arq, $pathIndisponivel = "../fotos/indisponivel.png", $pa
     }
 
     function voltar(string $path = "javascript: history.go(-1)") {
-        // cria um icone que volta pra uma pagina especificada 
+        // cria um icone que volta pra uma pagina especificada ou para 1 pagina atras
 
         echo "<br> <a class='back' href='$path'><span class='material-icons md-light' width='100'> arrow_back_ios </span></a>
         ";
@@ -62,4 +61,12 @@ function thumb(string $arq, $pathIndisponivel = "../fotos/indisponivel.png", $pa
         }
     }
 
+    function query(string $query, string $msgSuc, string $msgErr, object $banco) {
+        // Faz a query e manda uma msg de erro ou sucesso
+        $busca = $banco->query($query);
+
+        // Se a busca der certo manda uma msg de sucesso, se não manda uma msg de erro e retorna a busca
+        (!$busca) ? msgErro($msgErr) : msgSuces($msgSuc);
+        return $busca;
+    }
 ?>

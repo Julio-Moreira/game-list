@@ -39,6 +39,7 @@
                     // produtora
                     $prod = $_POST['produtora'] ?? '0';     
                     
+                    // Coloca a img na pasta fotos só se for png
                     if ($capaTipo != 'png') {
                         msgErro('Você só pode carregar arquivos do tipo png e não '. $capaTipo);
                         sleep(0.5); // espera 0.5 segundos
@@ -46,25 +47,18 @@
                         die();
                     } else {
                         $img = move_uploaded_file($capaArq, "../../fotos/".$novoNome); // Coloca o arquivo na pasta fotos
-                        if (!$img) {
+                        if (!$img) { 
                             msgErro('infelismente não pudemos carregar sua imagem');
                             voltar('../../index.php'); // redireciona o usu para o index
                             die();
                         }
                     }
 
-                    // Query que insere os dados no db
+                    // Query que insere nome genero produtora descrição e nota nos jogos
                     $query = "insert into jogos values
                     (default, '$nome', '$gen', '$prod', '$desc', '$nota', '$novoNome')";
-
-                    $busca = $banco->query($query);
-                    if (!$busca) {
-                        msgErro(' infelismente não conseguimos cadastrar esses dados');
-                    } else {
-                        msgSuces('Os dados foram cadastrados com sucesso');
-                        sleep(0.5);
-                        header('Location: ../../index.php');
-                    }            
+                    query($query, 'Os dados foram cadastrados com sucesso',  'infelismente não conseguimos cadastrar esses dados', $banco);
+                    header('Location: ../../index.php');
                 }
         } else {
             msgErro('você precisa ser administrador para criar um novo jogo');

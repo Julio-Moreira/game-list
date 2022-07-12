@@ -41,7 +41,7 @@
 
     <!-- Descrição -->
     <label for="desc">Descrição: </label> <br>
-    <textarea required style='resize: none; font-size: 0.8em;' name="descricao" id="desc" cols="30" rows="5"></textarea> <br>
+    <textarea required name="descricao" id="desc" cols="30" rows="5"></textarea> <br>
 
-    <input type="submit" value="Salvar" id='submit'>
+    <input type="submit" value="Salvar">
 </form>

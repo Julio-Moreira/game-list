@@ -1,11 +1,12 @@
 
 <?php
-    //* o que vai aparecer
+    // o que vai aparecer
+    $user = $_SESSION['nome'] ?? 'Usuario';
     // deslogado
     $entrar = "<a class='login' href='paginas/user/login.php'> <span class='material-symbols-outlined'> login </span> </a>";
-    $sair = "<a class='login' href='paginas/user/logout.php'>sair</a>";
+    $sair = "<a class='login' href='paginas/user/logout.php'> Sair </a>";
     // logado
-    $alterarDados = "<a class='login' href='paginas/user/edit.php'>Alterar dados</a> ";
+    $alterarDados = "<a class='login' href='paginas/user/edit.php'> Alterar dados </a> ";
     $novo = "<a class='login' href='modelo/menuNew.php'> Novo </a>";
 
     echo "<header style='font-size: 0.6em; text-align: right;'>";
@@ -13,8 +14,7 @@
     if (!isLog()) {
         echo $entrar;
     } else {
-        $user = $_SESSION['nome'];
-        echo "<strong class='login'>$user</strong> | $alterarDados";
+        echo "<strong>$user</strong> | $alterarDados";
         
         if (isAdmin()) {
             echo " | $novo";

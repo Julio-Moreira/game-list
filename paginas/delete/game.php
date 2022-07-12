@@ -17,24 +17,26 @@
     <section id="corpo">
         <?php
         $nome = $_GET['nome'] ?? 'desconhecido';
-        
-        $query = "select capa, produtora, genero from jogos
-        where nome = '$nome'";
-        $busca = $banco->query($query);
-        $reg = $busca->fetch_object();
+        if (isAdmin()) {
+            // Query que pega a capa do jogo especificado
+            $query = "select capa from jogos where nome = '$nome'";
+            $busca = $banco->query($query);
+            $reg = $busca->fetch_object();
 
-        $deleteCapa = `rm ../../fotos/$reg->capa`;
-        $deleteGame = "delete from jogos where nome = '$nome' limit 1";
-        $busca2 = $banco->query($deleteGame);
-
-        if (!$deleteCapa || !$busca || !$busca2) {
-            msgErro('Infelismente esse jogo não pode ser deletado');
-            header("Location: ../../index.php");
+            // deleta do diretorio local do server
+            $deleteCapa = `rm ../../fotos/$reg->capa`;
+            // Query que deleta todos os dados do jogo especificado 
+            $deleteGame = "delete from jogos where nome = '$nome' limit 1";
+            
+            // concretização das querys
+            (!$deleteCapa) ? msgSuces('A imagm foi removida com sucesso') : msgErro('A imagem não pode ser removida '); 
+            query($deleteGame, 'Os dados foram deletados', 'Infelismente esse jogo não pode ser deletado', $banco);
         } else {
-            msgSuces('Os dados foram deletados');
-            header("Location: ../../index.php");
+            msgErro('Você precisa ser administrador para deletar um jogo');
         }
+
         voltar();
+        header("Location: ../../index.php");
         ?>
     </section>
     <?php include_once "../modelo/rodape.php" // rodape ?>

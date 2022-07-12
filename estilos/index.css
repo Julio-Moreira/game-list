@@ -121,8 +121,9 @@ img.mini {
     text-align: center;
 }
 
-.cart > img {
-    text-align: center;
+textarea {
+    resize: none; 
+    font-size: 0.8em;
 }
 
 form#busca {
