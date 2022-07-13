@@ -146,13 +146,7 @@ input:hover {
     transition: 0.5s;
 }
 
-#capa {
-    width: auto;
-    height: auto;
-    border-style: none;
-}
-
-#submit {
+input[type=submit] {
     background-color: #00009e;
     color: #ffffff;
     border-style: none;
@@ -163,12 +157,17 @@ input:hover {
     transition: 0.5s;
 }
 
-#submit:hover {
+input[type=submit]:hover {
     transition: 0.5s;
     background-color: #ffffff;
     color: #00009e;
 }
 
+#capa {
+    width: auto;
+    height: auto;
+    border-style: none;
+}
 
 /* Mensagens */
 

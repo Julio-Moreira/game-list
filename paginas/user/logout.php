@@ -17,12 +17,9 @@
     ?>
     <section id="corpo">
         <?php
-            if (logout()) { // se o logout der certo
-                msgSuces('Usuario desconectado com sucesso');
-            } else {
-                msgErro("Infelizmente o logout não pode ser executado");
-                 
-            }
+            // se o logout der certo manda uma msg de sucesso, se não manda uma msg de erro
+            logout() ? msgSuces('Usuario desconectado com sucesso') : msgErro("Infelizmente o logout não pode ser executado");;
+            
             voltar("../../index.php");
             sleep(1);
             header('Location: ../../index.php'); 

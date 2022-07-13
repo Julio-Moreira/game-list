@@ -11,7 +11,6 @@
     <?php 
         // * Includes
         require_once "../includes/banco.php";
-        require_once "../includes/login.php";
         require_once "../includes/func.php";
         $cod = $_GET['cod'] ?? 0;
     ?>
@@ -40,10 +39,10 @@
                         $desc = $reg->descricao ?? "dados não encontrados";
 
                         // Printa tudo
-                        echo "<tr> <td rowspan='3'>". $img;
-                        echo "<td> <h2> $nome </h2>";
-                        mediaNotas(array($nota), "<tr> <td>");
-                        echo "<tr> <td> <p> $desc </p>";
+                        echo "<tr> <td rowspan='3'>". $img; // img
+                        echo "<td> <h2> $nome </h2>"; // nome
+                        mediaNotas(array($nota), "<tr> <td>"); // notas
+                        echo "<tr> <td> <p> $desc </p>"; // descrição
                     else:
                         msgErro("O jogo selecionado nao esta disponivel");
                     endif;

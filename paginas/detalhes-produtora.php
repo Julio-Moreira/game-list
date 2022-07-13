@@ -13,12 +13,11 @@
         //* Includes
         require_once "../includes/banco.php";
         require_once "../includes/func.php";
-        require_once "../includes/login.php";
-        $cod = $_GET['cod'] ?? 0;
+        $cod = $_GET['cod'] ?? 1;
     ?>
     <section id="corpo">
         <?php
-        // Query que puxa as infos das produtoras
+        // Query que puxa a produtora o pais os criadores a data de criação e a descrição das produtoras
         $query = " select produtora, pais, criadores, dataCriacao, descr from produtoras 
         where produtora = '$cod' ";
 
@@ -54,7 +53,7 @@
                 // Jogos
                 echo "<br> <h3>Jogos: </h3> <p id='container-prod'>";
                 while ($reg = $busca->fetch_object()) {
-                    if ($count == 2) {
+                    if ($count == 2) { // se tiver mais de 2 resultados manda pra lista completa
                         echo "<a href='det-prod-lista.php?nome=$nome' class='margin'>...</a>";
                         break;
                     }
@@ -72,6 +71,8 @@
                 }
 
                 echo '</p>';
+
+                // Média de notas
                 echo "<h3> Média das notas (de seus jogos): </h3>";
                 mediaNotas($nota);
             }

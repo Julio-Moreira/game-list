@@ -34,10 +34,9 @@
                 cartao('novo genero', '../fotos/favicon/add.png', 'mais', '../paginas/new/gen.php');
             }           
             
-            if (isAdmin()) {
-                // cartão para novo usuario
-                cartao('novo usuario', '../fotos/favicon/new.png', 'novo', '../paginas/new/user.php');
-            }
+            // cartão para novo usuario
+            isAdmin() ? cartao('novo usuario', '../fotos/favicon/new.png', 'novo', '../paginas/new/user.php') : "";
+
         } else {
             msgErro('você precisa estar logado para criar coisas <br> você sera redirecionado');
             voltar('../index.php');

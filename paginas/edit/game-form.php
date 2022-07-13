@@ -7,7 +7,7 @@
     $busca = $banco->query($query);
     $reg = $busca->fetch_object();
     // deleta a img antiga
-    `rm ../../fotos/$reg->capa` ? msgSuces('A imagem antiga foi deletada com sucesso') : msgErro('A imagem antiga não pode ser deletada');
+    `rm ../../fotos/$reg->capa` ? msgErro('A imagem antiga não pode ser deletada') : msgSuces('A imagem antiga foi deletada com sucesso');
 ?>
 
 <form action="game.php" method="post" enctype="multipart/form-data">

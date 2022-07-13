@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../estilos/index.css">
     <link rel="shortcut icon" href="../fotos/favicon/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Lista</title>
+    <title>Lista da produtora</title>
 </head>
 <body>
     <?php 
@@ -31,6 +31,7 @@
         } else {
             echo "<table class='listagem'>";
             while ($reg = $busca->fetch_object()) {
+                // Dados
                 $path = thumb($reg->capa);
                 $img = "<img src='$path' class='mini'/>";
                 $nome = "<a href='detalhes.php?cod=$reg->cod' class='detalhes'> $reg->nome </a>";

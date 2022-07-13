@@ -27,10 +27,10 @@
         <?php include_once "modelo/topo.php" // topo da pag ?>
         <h1>Jogos</h1>
         
-        <!-- Ordenacao -->
+        <!-- Formulario de ordenacao -->
         <?php require_once "index-form.php" ?>
 
-        <!-- Listagem de jogos -->
+        <!-- Listagem e filtros -->
         <table class="listagem">
             <?php
                 // Query que pega o nome, a capa, o genero e a produtora dos jogos (sem as ordenações)
@@ -89,12 +89,18 @@
                             echo "<br> <tr> <td>". $img ."<td>". $nome ."<br>" . $genero ." ". $produtora;
 
                             // * Nivel de acesso
-                            if (isAdmin()) { // se for adm
-                                echo " <td> <a href='paginas/edit/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined' id='ico'> edit </span> </a> "; 
-                                echo " <a href='paginas/delete/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined'> remove </span> </a>";
-                            } elseif (isEditor()) { // se for editor
-                                echo "<td> <a href='paginas/edit/game.php?nome=$palceholderNome'> <span class='material-symbols-outlined' id='ico'> edit </span></a>"; 
-                            }
+                            // Editar
+                            $urlEditar = "paginas/edit/game.php?nome=$palceholderNome";
+                            $icoEditar = "<span class='material-symbols-outlined' id='ico'> edit </span>";
+                            // Deletar
+                            $urlDel = "paginas/delete/game.php?nome=$palceholderNome";
+                            $icoDel = "<span class='material-symbols-outlined'> remove </span>";
+
+                            // Se for editor ou adm
+                            echo (isEditor() || isAdmin()) ? " <td> <a href='$urlEditar'> $icoEditar </a> " : "<td>";
+                            // Se for adm
+                            echo (isAdmin()) ?  "<a href='$urlDel'> $icoDel </a>" : " ";
+
                         }
                     endif;
                 endif;

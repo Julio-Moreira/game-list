@@ -37,7 +37,7 @@
                     header('Location: ../../index.php');
                 } else {
                     $reg = $busca->fetch_object();
-                    if (testarHash($senha, $reg->senha)) { // testa a senha
+                    if (testarHash($senha, $reg->senha)) { // testa se é a senha certa
                         msgSuces('Logado com sucesso!');
 
                         // declara o usuario, o nome e o tipo na seção 

@@ -65,14 +65,14 @@
                     }
                     echo "</table>";
 
-                    // Notas
+                    // Média de notas
                     echo "<h2> Média de notas: </h2>";
                     mediaNotas($nota);
                 }
                 
             }       
 
-            // Manda para o index
+            // Manda para uma pagina atras
             voltar();
         ?>
     </section>

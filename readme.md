@@ -1,6 +1,6 @@
 # Lista de jogos
 
-Uma simples lista de jogos com detalhes de jogos produtoras e generos
+Uma simples lista de jogos com detalhes de jogos produtoras e generos e sistema de login
 
 <img src='fotos/home.png' alt='home' width='300px'/>
 <em>home do site</em>

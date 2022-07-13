@@ -48,18 +48,8 @@
                             INSERT INTO usuarios (usuario, nome, senha, tipo) VALUES
                             ('$usuario', '$nome', '$senha', '$tipo')
                             ";
-                            
-                            if ($banco->query($query)) {
-                                msgSuces("Usuario $nome cadastrado com suceso!");
-                                voltar("../../index.php");
-                                sleep(1);
-                                header('Location: ../../index.php'); 
-                            } else {
-                                msgErro("O usuario $nome nao pode ser cadastrado");
-                                voltar('user.php');
-                                sleep(1);
-                                header('Location: ../../index.php'); 
-                            }
+                            query($query, 'Usuario cadastrado com suceso!', 'O usuario nao pode ser cadastrado', $banco);
+                            header('Location: ../user/login.php'); 
                         }
                     } else {
                         msgErro('Senhas nao conferem');
@@ -69,7 +59,6 @@
                     }
                 }
             }
-
         ?>
     </section>
     <?php include_once "../../modelo/rodape.php" // rodape ?>

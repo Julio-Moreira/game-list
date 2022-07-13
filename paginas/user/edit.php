@@ -47,26 +47,14 @@
                     }
                                         
                     $query .= "where usuario = '". $_SESSION['user'] ."' limit 1"; // termina a query com a condição do user
-
-                    if ($banco->query($query)) {
-                        msgSuces('usuario alterado com sucesso');
-                        msgAviso("por segurança faça o login novamente");
-
-                        logout();
-                        voltar('login.php');
-                        sleep(1);
-                        header('Location: login.php');                 
-                    } else {
-                        msgErro("Usuario não pode ser modificado");
-                        voltar();          
-                        sleep(1);
-                        header('Location: ../../index.php');             
-                    }
-
+                    // Concretiza a query
+                    query($query, 'usuario alterado com sucesso', 'Usuario não pode ser modificado', $banco);
+                    msgAviso("por segurança faça o login novamente");
+                    // Desloga
+                    logout();
+                    header('Location: login.php');                 
                 }
-
             }
-            
         ?>
     </section>
     <?php include_once "../../modelo/rodape.php" // rodape ?>
