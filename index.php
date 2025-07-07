@@ -39,7 +39,6 @@
                 join produtoras p on j.produtora = p.cod 
                 ";
                 
-                // Parte da organização
                 // * Busca (no input)  
                 if (!empty($chave)) {
                     $query .= " where j.nome like '%$chave%' or
@@ -62,9 +61,8 @@
                         $query .= " order by j.nome";
                 }
 
-                // Parte da listagem 
                 $busca = $banco->query($query);         
-                if (!$busca): // se a busca nao der certo
+                if (!$busca): 
                     msgErro('Nenhum jogo disponivel no momento <br> =(');
                 else:
                     if ($busca->num_rows == 0): 
